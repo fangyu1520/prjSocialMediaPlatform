@@ -1,0 +1,37 @@
+﻿@model IEnumerable<prjSocialMediaPlatform.Models.Post>
+
+@{
+    ViewBag.Title = "社群媒體平台";
+}
+
+<style>
+    .small {
+        margin-bottom: 30px;
+    }
+</style>
+
+<main>
+
+    <div class="row">
+        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+            <p class="mt-4"><a class="btn btn-outline-dark" href="@Url.Action("CreatePost", "Home")">+ 發布貼文</a></p>
+        </section>
+    </div>
+
+    <hr />
+
+    @foreach (var post in Model)
+    {
+        <div>
+            <p>@post.UserName</p>
+            <p>@post.Content</p>
+            <small>發佈日期: @post.CreatedAt.ToString()</small>
+            <p />
+            <button type="submit" class="btn btn-outline-dark mt-3">編輯</button>
+            <button type="submit" class="btn btn-outline-dark mt-3">刪除</button>
+        </div>
+
+        <hr />
+    }
+
+</main>

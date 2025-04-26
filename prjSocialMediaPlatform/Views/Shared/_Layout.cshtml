@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>社群媒體平台</title>
@@ -19,12 +19,24 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1" />
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        @Html.ActionLink("註冊", "Register", "User", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("登入", "Login", "User", new { area = "" }, new { @class = "nav-link" })
-                    </li>
+                    @if (Session.Count == 0)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("註冊", "Register", "User", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("登入", "Login", "User", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("登出", "LogOut", "User", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("你好! " + Session["UserName"].ToString(), "ShowOwnPost", "Home", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    }
                 </ul>
             </div>
         </div>

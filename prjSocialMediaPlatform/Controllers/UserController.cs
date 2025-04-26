@@ -62,6 +62,11 @@ namespace prjGroupBuying.Controllers
 
                                 return RedirectToAction("Login");
                             }
+                            else
+                            {
+                                ViewBag.Message = "此用戶已經註冊過，請直接登入!";
+                                return View(user);
+                            }
                         }
                     }
                 }
@@ -142,7 +147,7 @@ namespace prjGroupBuying.Controllers
 
                     using (SqlCommand command = new SqlCommand(sqlStatement, connection))
                     {
-                        command.Parameters.AddWithValue("@UserId", "0" + user.UserID);
+                        command.Parameters.AddWithValue("@UserId", user.UserID);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
